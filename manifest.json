@@ -1,5 +1,5 @@
 {
-    "name": "SARS Notif",
+    "name": "SARS Notification",
     "description": "Plays sound when there is a new drop in student",
     "version": "1.0",
     "manifest_version": 3,

@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.method == "turnOn") {
     console.log("Turning on");
     chrome.storage.local.set({ prevCount: 0 });
-    start = setInterval(startMonitor, 1000);
+    start = setInterval(startMonitor, 5000);
   } else if (request.method == "turnOff") {
     try {
       console.log("Turning off");
@@ -12,8 +12,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     } catch (error) {
       console.log(error);
     }
-  } else {
-    console.log("Test");
   }
 });
 
@@ -27,16 +25,17 @@ function startMonitor() {
       currCount = 0;
     }
     if (currCount > 0) {
-      console.log("Number of students waiting: " + currCount);
+      //console.log("Number of students waiting: " + currCount);
       if (prevCount < currCount) {
-        console.log("NEW STUDENT");
+        //console.log("NEW STUDENT");
         chrome.runtime.sendMessage("djolmbpppnlbeijkachpibdicogjpnog", {
           action: "New Student",
         });
       }
-    } else {
-      console.log("No students waiting");
     }
+    // else {
+    //   console.log("No students waiting");
+    // }
     chrome.storage.local.set({ prevCount: currCount });
   });
 }
