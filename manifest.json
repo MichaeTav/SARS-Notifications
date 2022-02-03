@@ -25,5 +25,8 @@
           },
           "description": "Opens src/extensions/popup.html"
         }
+      },
+      "icons": {
+        "128": "/resources/iconLarge.png"
       }
   }
