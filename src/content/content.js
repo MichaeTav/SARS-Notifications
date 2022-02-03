@@ -28,7 +28,7 @@ function startMonitor() {
       //console.log("Number of students waiting: " + currCount);
       if (prevCount < currCount) {
         //console.log("NEW STUDENT");
-        chrome.runtime.sendMessage("djolmbpppnlbeijkachpibdicogjpnog", {
+        chrome.runtime.sendMessage(chrome.runtime.id, {
           action: "New Student",
         });
       }
