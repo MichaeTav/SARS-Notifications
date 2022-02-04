@@ -10,14 +10,6 @@ Make sure SARS is open in another tab before turning on and once it is click the
 
 If it turns on the button will turn blue and the icon will show a red dot in the corner indicating that it is on.
 
-NOTES:
-
-Will only work if the top left of your screen is not covered by another window. Not sure why but the sound will only play if
-the top left is uncovered or has chrome.
-
-A small popup window will open when a new student joins then close after the sound is played. This is due to Manifest V3 not allowing
-service workers to play audio.
-
 ## Install
 
 1. Download zip file and extract.
@@ -33,5 +25,4 @@ service workers to play audio.
 - Ability to change notification sound
 - Change theme of SARS
 - Control volume
-- Chrome unfocus works
 - Support for more browsers
