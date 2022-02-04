@@ -19,27 +19,36 @@ document.addEventListener(
           function (tab) {
             chrome.storage.local.get("isOn", function ({ isOn }) {
               //if sars in opened in browser then turn on monitor
-              if (tab[0] && !isOn) {
-                console.log("ON");
-                startButton.setAttribute("src", "../../resources/on.png");
-                chrome.storage.local.set({ isOn: true });
+              if (tab[0]) {
+                if (!isOn) {
+                  console.log("ON");
+                  startButton.setAttribute("src", "../../resources/on.png");
+                  chrome.storage.local.set({ isOn: true });
 
-                chrome.tabs.sendMessage(tab[0].id, { method: "turnOn" });
-                chrome.action.setIcon({
-                  path: "../../resources/iconOnSmall.png",
-                });
-              } else if (tab[0] && isOn) {
-                console.log("OFF");
-                startButton.setAttribute("src", "../../resources/off.png");
-                chrome.storage.local.set({ isOn: false });
+                  chrome.tabs.sendMessage(tab[0].id, { method: "turnOn" });
+                  chrome.action.setIcon({
+                    path: "../../resources/iconOnSmall.png",
+                  });
+                } else {
+                  console.log("OFF");
+                  startButton.setAttribute("src", "../../resources/off.png");
+                  chrome.storage.local.set({ isOn: false });
 
-                chrome.tabs.sendMessage(tab[0].id, { method: "turnOff" });
-                chrome.action.setIcon({
-                  path: "../../resources/iconSmall.png",
-                });
+                  chrome.tabs.sendMessage(tab[0].id, { method: "turnOff" });
+                  chrome.action.setIcon({
+                    path: "../../resources/iconSmall.png",
+                  });
+                }
               } else {
-                //if SARS is not opened alert pops up
-                alert("SARS must be opened in a tab to start");
+                if (!tab[0]) {
+                  startButton.setAttribute("src", "../../resources/off.png");
+                  chrome.storage.local.set({ isOn: false });
+                  chrome.action.setIcon({
+                    path: "../../resources/iconSmall.png",
+                  });
+                } else {
+                  alert("SARS must be opened");
+                }
               }
             });
           }

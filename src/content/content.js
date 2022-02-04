@@ -15,6 +15,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 });
 
+let audio = new Audio(chrome.runtime.getURL("../../resources/alert.mp3"));
+
 function startMonitor() {
   chrome.storage.local.get("prevCount", function ({ prevCount }) {
     let count = document.getElementById("tabs-12-attention");
@@ -24,18 +26,10 @@ function startMonitor() {
     if (count.className === "dropin-tab-count HiddenElement") {
       currCount = 0;
     }
-    if (currCount > 0) {
-      //console.log("Number of students waiting: " + currCount);
-      if (prevCount < currCount) {
-        //console.log("NEW STUDENT");
-        chrome.runtime.sendMessage(chrome.runtime.id, {
-          action: "New Student",
-        });
-      }
+    //If there is a new student play sound
+    if (currCount > 0 && currCount > prevCount) {
+      audio.play();
     }
-    // else {
-    //   console.log("No students waiting");
-    // }
     chrome.storage.local.set({ prevCount: currCount });
   });
 }

@@ -10,9 +10,10 @@
             "js": ["src/content/content.js"]
         }
     ],
-    "background":{
-      "service_worker": "src/extension/background.js"
-    },
+    "web_accessible_resources": [{
+      "resources": ["resources/alert.mp3"],
+      "matches": ["<all_urls>"]
+    }],
     "action": {
         "default_popup": "src/extension/popup.html",
         "default_icon": "resources/iconSmall.png"
@@ -25,8 +26,8 @@
           },
           "description": "Opens src/extensions/popup.html"
         }
-      },
-      "icons": {
-        "128": "/resources/iconLarge.png"
-      }
-  }
+    },
+    "icons": {
+      "128": "/resources/iconLarge.png"
+    }
+}
