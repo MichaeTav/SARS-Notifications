@@ -26,7 +26,4 @@ If it turns on the button will turn blue and the icon will show a red dot in the
 - Change theme of SARS
 <<<<<<< HEAD
 - ~~Control volume~~
-=======
-- Control volume
->>>>>>> 3f53903d0ff6d720b0060ebb4ec7d5909442e424
 - Support for more browsers
