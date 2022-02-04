@@ -24,5 +24,5 @@ If it turns on the button will turn blue and the icon will show a red dot in the
 
 - Ability to change notification sound
 - Change theme of SARS
-- Control volume
+- ~~Control volume~~
 - Support for more browsers

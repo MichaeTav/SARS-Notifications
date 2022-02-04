@@ -2,10 +2,15 @@
   <head>
     <title>Sars Notifications</title>
     <script src="popup.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resources/styles.css"/>
   </head>
   
   <body>
-    <h1 style="font-size: 30px; text-align: center;">SARS Notifications</h1>
-    <input type="image" src="../../resources/iconSmall.png" id="start" style="width:40%; margin: 10px auto 20px;display: block;"/>
+    <h1 class="title">SARS Notifications</h1>
+    <input type="image" class="button" src="../../resources/iconSmall.png" id="start"/>
+    <hr/>
+    <div class="slidecontainer">
+      <input type="range" min="0" max="100" value="100" class="slider" id="volume">
+    </div>
   </body>
 </html>

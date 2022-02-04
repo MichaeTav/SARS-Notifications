@@ -18,18 +18,22 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 let audio = new Audio(chrome.runtime.getURL("../../resources/alert.mp3"));
 
 function startMonitor() {
-  chrome.storage.local.get("prevCount", function ({ prevCount }) {
-    let count = document.getElementById("tabs-12-attention");
-    let currCount = count.textContent;
+  chrome.storage.local.get(
+    ["prevCount", "volume"],
+    function ({ prevCount, volume }) {
+      let count = document.getElementById("tabs-12-attention");
+      let currCount = count.textContent;
+      audio.volume = volume;
 
-    //element keeps 1 as textContent when dropping to zero so check for HiddenElement
-    if (count.className === "dropin-tab-count HiddenElement") {
-      currCount = 0;
+      //element keeps 1 as textContent when dropping to zero so check for HiddenElement
+      if (count.className === "dropin-tab-count HiddenElement") {
+        currCount = 0;
+      }
+      //If there is a new student play sound
+      if (currCount > 0 && currCount > prevCount) {
+        audio.play();
+      }
+      chrome.storage.local.set({ prevCount: currCount });
     }
-    //If there is a new student play sound
-    if (currCount > 0 && currCount > prevCount) {
-      audio.play();
-    }
-    chrome.storage.local.set({ prevCount: currCount });
-  });
+  );
 }

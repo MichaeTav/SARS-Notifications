@@ -1,6 +1,8 @@
 document.addEventListener(
   "DOMContentLoaded",
   function () {
+    getVolume();
+
     var startButton = document.getElementById("start");
 
     chrome.storage.local.get("isOn", function ({ isOn }) {
@@ -40,7 +42,7 @@ document.addEventListener(
                   });
                 }
               } else {
-                if (!tab[0]) {
+                if (!tab[0] && isOn) {
                   startButton.setAttribute("src", "../../resources/off.png");
                   chrome.storage.local.set({ isOn: false });
                   chrome.action.setIcon({
@@ -59,3 +61,15 @@ document.addEventListener(
   },
   false
 );
+
+function getVolume() {
+  var volume = document.getElementById("volume");
+
+  chrome.storage.local.get("volume", (savedVolume) => {
+    volume.value = savedVolume.volume * 100;
+  });
+
+  volume.addEventListener("input", () => {
+    chrome.storage.local.set({ volume: volume.value / 100 });
+  });
+}
