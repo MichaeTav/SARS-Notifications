@@ -74,6 +74,5 @@ function getVolume() {
     soundTest.volume = volume.value / 100;
     soundTest.play();
     chrome.storage.local.set({ volume: volume.value / 100 });
-    console.log(volume.value);
   });
 }
