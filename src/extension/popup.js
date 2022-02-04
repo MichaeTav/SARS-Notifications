@@ -63,13 +63,17 @@ document.addEventListener(
 );
 
 function getVolume() {
+  let soundTest = new Audio("../../resources/alert.mp3");
   var volume = document.getElementById("volume");
 
   chrome.storage.local.get("volume", (savedVolume) => {
     volume.value = savedVolume.volume * 100;
   });
 
-  volume.addEventListener("input", () => {
+  volume.addEventListener("change", () => {
+    soundTest.volume = volume.value / 100;
+    soundTest.play();
     chrome.storage.local.set({ volume: volume.value / 100 });
+    console.log(volume.value);
   });
 }
