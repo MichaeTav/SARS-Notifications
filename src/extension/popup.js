@@ -64,10 +64,23 @@ document.addEventListener(
 
 function getVolume() {
   let soundTest = new Audio("../../resources/alert.mp3");
-  var volume = document.getElementById("volume");
+  let volume = document.getElementById("volume");
+  let volumeIcon = document.getElementById("volIcon");
 
   chrome.storage.local.get("volume", (savedVolume) => {
     volume.value = savedVolume.volume * 100;
+  });
+
+  volume.addEventListener("input", () => {
+    if (volume.value == 100) {
+      volumeIcon.setAttribute("src", "../../resources/icons/highVolume.png");
+    } else if (volume.value >= 50) {
+      volumeIcon.setAttribute("src", "../../resources/icons/medVolume.png");
+    } else if (volume.value < 50 && volume.value > 0) {
+      volumeIcon.setAttribute("src", "../../resources/icons/lowVolume.png");
+    } else {
+      volumeIcon.setAttribute("src", "../../resources/icons/noVolume.png");
+    }
   });
 
   volume.addEventListener("change", () => {
