@@ -69,18 +69,11 @@ function getVolume() {
 
   chrome.storage.local.get("volume", (savedVolume) => {
     volume.value = savedVolume.volume * 100;
+    changeVolumeIcon(volumeIcon);
   });
 
   volume.addEventListener("input", () => {
-    if (volume.value == 100) {
-      volumeIcon.setAttribute("src", "../../resources/icons/highVolume.png");
-    } else if (volume.value >= 50) {
-      volumeIcon.setAttribute("src", "../../resources/icons/medVolume.png");
-    } else if (volume.value < 50 && volume.value > 0) {
-      volumeIcon.setAttribute("src", "../../resources/icons/lowVolume.png");
-    } else {
-      volumeIcon.setAttribute("src", "../../resources/icons/noVolume.png");
-    }
+    changeVolumeIcon(volumeIcon);
   });
 
   volume.addEventListener("change", () => {
@@ -88,4 +81,16 @@ function getVolume() {
     soundTest.play();
     chrome.storage.local.set({ volume: volume.value / 100 });
   });
+}
+
+function changeVolumeIcon(volumeIcon) {
+  if (volume.value == 100) {
+    volumeIcon.setAttribute("src", "../../resources/icons/highVolume.png");
+  } else if (volume.value >= 50) {
+    volumeIcon.setAttribute("src", "../../resources/icons/medVolume.png");
+  } else if (volume.value < 50 && volume.value > 0) {
+    volumeIcon.setAttribute("src", "../../resources/icons/lowVolume.png");
+  } else {
+    volumeIcon.setAttribute("src", "../../resources/icons/noVolume.png");
+  }
 }
