@@ -1,0 +1,44 @@
+.button {
+  width: 40%;
+  margin: 10px auto 20px;
+  display: block;
+}
+
+#main {
+  max-width: 220px;
+  min-width: 220px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: F9F9FB;
+}
+
+.title {
+  font-size: 20px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.slider {
+  margin: auto;
+}
+
+.volumeIcon {
+  margin: auto;
+}  
+
+hr {
+  border: 0;
+  border-top: 1px solid;
+  margin: 0;
+  padding: 0;
+}
+
+.volume-container {
+  display: flex;
+  flex-direction: row;
+  margin: 10 10 10 10;
+  justify-content: space-evenly;
+}

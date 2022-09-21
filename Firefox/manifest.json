@@ -1,0 +1,32 @@
+{
+
+    "manifest_version": 2,
+    "name": "SARS Notifications",
+    "version": "1.0",
+    "description": "Plays sound when there is a new drop in student",
+    "icons": {
+        "128": "/resources/iconLarge.png"
+    },
+    "web_accessible_resources": ["resources/alert.mp3"],
+    "content_scripts": [
+        {
+            "matches": ["https://sarsstem.miracosta.edu/sarsanywhere/"],
+            "js": ["src/content/content.js"]
+        }
+    ],
+    "background": {
+        "scripts": ["src/background/background.js"]
+      },
+    "permissions": [
+        "webNavigation",
+        "storage",
+        "tabs"
+      ],
+
+    "browser_action": {
+        "default_popup": "src/extension/popup.html",
+        "default_icon": "resources/iconSmall.png"
+    }
+  
+  }
+  
